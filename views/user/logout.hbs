@@ -1,0 +1,14 @@
+<form class="" id="form" action="/user/logout" method="post">
+  <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+</form>
+<script type="text/javascript">
+  var userId = "{{{ session.user }}}";
+  var socket=io();
+  socket.emit('logout',{userId:userId});
+  socket.on('logout',function(data){
+    if(data.redirect==true)
+    {
+      $("#form").submit();
+    }
+  })
+</script>

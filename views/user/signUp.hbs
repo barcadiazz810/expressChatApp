@@ -1,0 +1,67 @@
+<div class="col-md-4 col-md-offset-4">
+  <center><h3>Sign-Up</h3></center>
+  {{#if hasErrors}}
+  <div class="alert alert-danger">
+    {{#each messages }}
+      <p>{{ this }}</p>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  <div  id="errors" class="alert alert-danger" style="display:none"></div>
+  <div class="form-group">
+    <form class="" action="/user/signup" method="post">
+      <input type="text" id="form" name="email" class="form-control" value="" placeholder="Email">
+      <br>
+      <input type="text" id="nickName" name="nickName" class="form-control" value="" placeholder="nickName">
+      <br>
+      <input type="password" name="password" class="form-control" value="" placeholder="Password">
+      <br>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <center><button type="submit" class="btn btn-primary" name="button">SignUp</button></center>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var nickNames = {{{ nickNames }}};
+
+  $("form").submit(function(e){
+    var nickName=$("#nickName").val();
+    var status=validateNickName(nickName);
+    if(status==false)
+    {
+      $("#errors").show();
+      $("#errors").html("NickName already exists");
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  });
+
+  $("input").on('change', function(){
+    $("#errors").hide();
+  });
+
+  function validateNickName(nickname)
+  {
+    var flag=0;
+    nickNames.forEach(function(nickName)
+    {
+      if(nickName['nickName']===nickname)
+      {
+        flag=1;
+      }
+    });
+    if(flag==1)
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
+  }
+</script>

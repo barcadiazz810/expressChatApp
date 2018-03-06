@@ -1,0 +1,27 @@
+<div class="">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">ChatR00m</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/chatRoom">ChatR00m</a>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <!--<li><a href="/user/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>-->
+              {{#if login}}
+                <li><a href="/user/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                {{else}}
+                  <li><a href="/user/signup"><span class="glyphicon glyphicon-log-in"></span> Sign-Up</a></li>
+                  <li><a href="/user/signin"><span class="glyphicon glyphicon-log-in"></span> Sign-In</a></li>
+                {{/if}}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
